@@ -1,26 +1,19 @@
-import { useState } from "react";
-export function Button({ text = "Vacio" }) {
-  return (
-    <button type="button" id="btnAvanzar" class="btn-block btn-lg btn-primary">
-      {text}
-    </button>
-  );
+import PropTypes from "prop-types";
+
+export function Button({ text, name }) {
+  return <button onClick={Click}>
+      {text} - {name}
+  </button>;
 }
 
-export function Caja({ text }) {
-  return <input type="text" class="form-control" placeholder={text}></input>;
+Button.propTypes = {
+  text: PropTypes.string.isRequired
 }
 
-export function Numero({text}) {
-  function generarAleatiorio() {
-    const n = Math.trunc(Math.random() * 10);
-    setNumero(n);
-  }
-  const [numero, setNumero] = useState(0);
-  return (
-    <div>
-      <p>El numero generado es: {numero}</p>
-      <button onClick={generarAleatiorio}>{text}</button>
-    </div>
-  );
+Button.defaultProps = {
+  name: "Some User"
+}
+
+function Click(){
+  return console.log("Hola React")
 }
